@@ -8,9 +8,9 @@ from preprocess import get_mnist
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--num_epochs", type=int, default=150,
+    parser.add_argument("--num_epochs", type=int, default=1,
                         help="number of epochs")
-    parser.add_argument("--num_epochs_ae", type=int, default=150,
+    parser.add_argument("--num_epochs_ae", type=int, default=1,
                         help="number of epochs for the pretraining")
     parser.add_argument("--patience", type=int, default=50, 
                         help="Patience for Early Stopping")
@@ -30,8 +30,13 @@ if __name__ == '__main__':
                         help='Pretrain the network using an autoencoder')
     parser.add_argument('--latent_dim', type=int, default=32,
                         help='Dimension of the latent variable z')
-    parser.add_argument('--normal_class', type=int, default=0,
-                        help='Class to be treated as normal. The rest will be considered as anomalous.')
+    
+    # 2 classes
+    parser.add_argument("--normal_class", type=int, default=0,
+                        help="number of epochs")
+    
+    parser.add_argument("--abnormal_class", type=int, default=1,
+                        help="number of epochs")
     #parsing arguments.
     args = parser.parse_args() 
 
