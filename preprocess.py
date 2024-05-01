@@ -73,6 +73,7 @@ def get_mnist(args, data_dir='./data/mnist/'):
     normal_indices = all_train.targets == args.normal_class
     x_train_normal = all_train.data[normal_indices]
     y_train_normal = all_train.targets[normal_indices]
+    y_train_normal = torch.zeros_like(y_train_normal) 
 
     '''
         test dataset
@@ -81,11 +82,13 @@ def get_mnist(args, data_dir='./data/mnist/'):
     # 정상(normal) 클래스 - 테스트 데이터
     x_test_normal = all_test.data[all_test.targets == args.normal_class]
     y_test_normal = all_test.targets[all_test.targets == args.normal_class]
+    y_test_normal = torch.zeros_like(y_test_normal) 
 
     # 비정상(abnormal) 클래스 필터링 - 테스트 데이터에서만
     abnormal_indices = all_test.targets == args.abnormal_class
     x_test_abnormal = all_test.data[abnormal_indices]
     y_test_abnormal = all_test.targets[abnormal_indices]
+    y_test_abnormal = torch.ones_like(y_test_abnormal) 
 
     # 데이터셋 생성
     train_dataset = MNIST_loader(x_train_normal, y_train_normal, transform)
